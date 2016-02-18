@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<sys/stat.h>
+#include<unistd.h>
+
+int main(int argc,char *argv[])
+{
+
+
+printf("creating hard link\n");
+int r=link(argv[1],argv[2]);
+if(r==0)
+printf("\n ok");
+else
+printf("error");
+
+printf("\n removing oroginal file");
+int r2=unlink(argv[1]);
+if(r2==0)
+printf("\n ok");
+else
+printf("error");
+
+exit(0);
+
+}

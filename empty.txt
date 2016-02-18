@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<fcntl.h>
+#include<sys/types.h>
+#include<dirent.h>
+#include<sys/stat.h>
+int main()
+{
+        DIR *pdir;
+        struct dirent *pdirent;
+        struct stat s;
+        if((pdir=opendir("."))==NULL) {
+                printf("Open dir");
+                return 0;
+        }
+        while(pdirent = readdir(pdir)) {
+                if(pdirent==NULL) {
+                        printf("error");
+                        continue;
+                }
+                if(stat(pdirent->d_name, &s)<0) {
+                        printf("stat");
+                        continue;
+                }
+                if(s.st_size==0) {
+                        if(unlink(pdirent->d_name)<0) {
+                                printf("unlink");
+                                continue;
+                        }
+                }
+        }
+        if(closedir(pdir)<0)
+        {
+                printf("Close dir");
+                return 2;
+        }
+}
