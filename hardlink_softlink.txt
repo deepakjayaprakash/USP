@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<sys/stat.h>
+#include<unistd.h>
+
+int main(int argc,char *argv[])
+{
+
+if(argc==3)
+{
+printf("creating hard link\n");
+printf("%s %s ",argv[1],argv[2]);
+int r=link(argv[1],argv[2]);
+if(r==0)
+printf("\n ok");
+else
+printf("error");
+
+}
+if(argc==4){
+printf("creating soft link\n");
+int r=symlink(argv[2],argv[3]);
+
+if(r==0)
+printf("\n ok");
+else
+printf("error");
+
+}
+exit(0);
+
+}

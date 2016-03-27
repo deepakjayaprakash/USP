@@ -1,0 +1,16 @@
+#include <pwd.h>
+#include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/utsname.h>
+
+
+int main(int argc, char *argv[]){
+
+
+struct utsname ptr;
+int i=uname(&ptr);
+printf("%s \n %s \n %s\n %s \n",ptr.sysname,ptr.nodename,ptr.release,ptr.machine);
+
+return 0;
+}

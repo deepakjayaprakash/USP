@@ -1,0 +1,27 @@
+#include <pwd.h>
+#include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+struct passwd *getpwnam(const char *name)
+{
+struct passwd *ptr;
+setpwent();
+while ((ptr = getpwent()) != NULL){
+char *name=ptr->pw_name;
+char *p=ptr->pw_passwd;
+char *dir=ptr->pw_dir;
+printf(" %s %s %s\n",name,p,dir);
+}
+
+endpwent();
+return(ptr); /*a ptr is NULL if no match found */
+}
+
+int main(int argc, char *argv[]){
+
+struct passwd *ptr=NULL;
+
+ptr=getpwnam(argv[1]);
+
+return 0;
+}
