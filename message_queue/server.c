@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/msg.h>
 #include <string.h>
+#include <fcntl.h>
 
 #define SIZE 128
 
@@ -25,6 +26,7 @@ int main()
 	msgid = msgget(key,IPC_CREAT|0777);
 
 	buffer.mtype = 1;
+printf("enter the file name:");
 	scanf("%s",buffer.mtext);
 
 	n = strlen(buffer.mtext);
